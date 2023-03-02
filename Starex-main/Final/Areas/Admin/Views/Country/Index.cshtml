@@ -1,0 +1,64 @@
+﻿@model List<CountryGetDto>
+@{
+    ViewData["Title"] = "Valyutalar";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ölkələr</h4>
+            <p class="card-description">
+                <a type="submit" class="btn btn-success" asp-action="Create"><i class="mdi mdi-plus"></i></a>
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Bayraq</th>
+                                <th>Ölkə</th>
+                                <th>Valyuta</th>
+                                <th>Sazlamalar</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td><img src="~/assets/images/@item.Flag" /></td>
+                                    <td>@item.Name</td>
+                                     @foreach (var currency in ViewBag.currencies)
+                                    {
+                                        if (item.CurrencyId == currency.Id)
+                                        {
+                                            <td>@currency.Name</td>
+                                        }
+                                    }
+
+
+                                    <td>
+
+                                        <a class=" btn btn-light" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a>
+                                        <a class=" btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete-variant"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

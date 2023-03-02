@@ -1,0 +1,34 @@
+﻿@model SocialUpdateDto
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Sosial Şəbəkə</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="socialPostDto.Name">Ad</label>
+                    <input asp-for="socialPostDto.Name" value="@Model.socialGetDto.Name" class="form-control" placeholder=" Sosial Şəbəkə adını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="socialPostDto.Name"></span>
+                </div>   
+                <div class="form-group">
+                    <label asp-for="socialPostDto.Icon"></label>
+                    <input asp-for="socialPostDto.Icon" value="@Model.socialGetDto.Icon" class="form-control" placeholder=" Iconu daxil edin...">
+                    <span class="text text-danger" asp-validation-for="socialPostDto.Icon"></span>
+                </div>   
+                <div class="form-group">
+                    <label asp-for="socialPostDto.Url">Url</label>
+                    <input asp-for="socialPostDto.Url" value="@Model.socialGetDto.Url" class="form-control" placeholder=" URli daxil edin...">
+                    <span class="text text-danger" asp-validation-for="socialPostDto.Url"></span>
+                </div>
+                <input type="hidden" asp-for="@Model.socialGetDto.Id" value="@Model.socialGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

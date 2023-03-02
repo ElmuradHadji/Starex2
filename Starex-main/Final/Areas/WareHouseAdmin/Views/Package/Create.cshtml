@@ -1,0 +1,53 @@
+﻿@model PackagePostDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Bağlama</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder=" Bağlama adını  daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cost"></label>
+                    <input asp-for="Cost" class="form-control" placeholder=" Məhsul Qiymətini daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Cost"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OriginalTrackingId"></label>
+                    <input asp-for="OriginalTrackingId" class="form-control" placeholder=" *****...">
+                    <span class="text text-danger" asp-validation-for="OriginalTrackingId"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Weight"></label>
+                    <input asp-for="Weight" class="form-control" placeholder=" Çəkini (kqla) daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Weight"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="CostCurrencyId">Valyuta</label>
+                    <select asp-for="CostCurrencyId" class="form-control">
+                        <option>
+                            Valyutanı Seç
+                        </option>
+                        @foreach (var currency in ViewBag.currencies)
+                        {
+                            <option value="@currency.Id">@currency.Name</option>
+                        }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="CostCurrencyId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

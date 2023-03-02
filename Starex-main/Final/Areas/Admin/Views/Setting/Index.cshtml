@@ -1,0 +1,55 @@
+﻿@model List<SettingGetDto>
+@{
+    ViewData["Title"] = "Settings";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Settings</h4>
+           
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Logo</th>
+                                <th>Telefon</th>
+                                <th>Adress</th>
+                                <th>Sazlamalar</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Logo</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Adress</td>
+
+
+                                    <td>
+                                        
+                                        <a class=" btn btn-light" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

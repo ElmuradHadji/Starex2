@@ -1,0 +1,66 @@
+﻿@model List<AdminGetDto>
+@{
+    ViewData["Title"] = "Stuff";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Stuff</h4>
+            <p class="card-description">
+                <a type="submit" class="btn btn-success" asp-action="Create"><i class="mdi mdi-plus"></i></a>
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>UserName</th>
+                                <th>Role</th>
+                                <th>Sazlamalar</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.UserName</td>
+
+                                    @foreach (var role in ViewBag.roles)
+                                    {
+                                        if (item.UserName.ToLower() == role.Name.ToLower())
+                                        {
+                                            <td>@role.Name</td>
+                                        }
+                                    }
+
+
+
+                                    <td>
+                                       
+                                        <a class=" btn btn-light" asp-action="Update" ><i class="mdi mdi-pencil"></i></a>
+                                        <a class=" btn btn-danger" asp-action="Delete" ><i class="mdi mdi-delete-variant"></i></a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*asp-route-id="@item.Id"*@
+
+

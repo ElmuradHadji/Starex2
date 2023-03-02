@@ -1,0 +1,78 @@
+﻿@model List<FAQGetDto>
+@{
+    ViewData["Title"] = "FAQ";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Suallar</h4>
+            <p class="card-description">
+                <a type="submit" class="btn btn-success" asp-action="Create"><i class="mdi mdi-plus"></i></a>
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Sual</th>
+                                <th>Cavab</th>
+                                <th>Categoriya</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Question</td>
+                                    @if (item.Answer.Length > 30)
+                                    {
+                                        <td>@item.Answer.Substring(0,30)</td>
+                                    }
+                                    @if (item.Answer.Length <= 30)
+
+                                    {
+                                        <td>@item.Answer</td>
+                                    }
+                                    @foreach (var category in ViewBag.categories)
+                                    {
+                                        if (item.CategoryId == category.Id)
+                                        {
+                                            <td>@category.Name</td>
+                                        }
+                                    }
+
+
+                                    <td>
+                                        @if (item.IsActive == true)
+                                        {
+                                            <a class=" btn btn-warning" asp-action="ModifyActivationStatus" asp-route-id="@item.Id"><i class="mdi mdi-lock"></i></a>
+                                        }
+                                        @if (item.IsActive == false)
+                                        {
+                                            <a class=" btn btn-success" asp-action="ModifyActivationStatus" asp-route-id="@item.Id"><i class="mdi mdi-lock-open"></i></a>
+                                        }
+                                        <a class=" btn btn-light" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a>
+                                        <a class=" btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete-variant"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

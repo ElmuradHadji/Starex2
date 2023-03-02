@@ -1,0 +1,43 @@
+﻿@model FAQPostDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">FAQ</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="Question">Sual</label>
+                    <input asp-for="Question" class="form-control" placeholder=" Sualı daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Question"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Answer">Cavab</label>
+                    <input asp-for="Answer" class="form-control" placeholder=" Cavabı daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Answer"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId">Kategoriya</label><br>
+                    <select asp-for="CategoryId" class="form-control">
+                        <option>
+                            Kategoriya daxil edin
+                        </option>
+                        @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="Answer"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>
+

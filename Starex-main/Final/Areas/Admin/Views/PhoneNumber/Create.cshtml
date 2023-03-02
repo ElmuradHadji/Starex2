@@ -1,0 +1,26 @@
+﻿@model PhoneNumberPostDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Nömrələr</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="Number">Nömrə</label>
+                    <input asp-for="Number" class="form-control" placeholder=" Nömrəni daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Number"></span>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

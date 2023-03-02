@@ -1,0 +1,67 @@
+﻿@model WareHousePostDTO
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xarici anbar</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="AdressTitle"></label>
+                    <input asp-for="AdressTitle" class="form-control" placeholder=" Adress başlığını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="AdressTitle"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Adress1"></label>
+                    <input asp-for="Adress1" class="form-control" placeholder=" Adress1`i daxil edin...">
+                    <span class="text text-danger" asp-validation-for="AdressTitle"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Province"></label>
+                    <input asp-for="Province" class="form-control" placeholder=" Əyaləti daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Province"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZIP"></label>
+                    <input asp-for="ZIP" class="form-control" placeholder=" ZIP codu daxil edin...">
+                    <span class="text text-danger" asp-validation-for="ZIP"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control" placeholder=" Şəhəri daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Province"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="District"></label>
+                    <input asp-for="District" class="form-control" placeholder=" Ərazini daxil edin...">
+                    <span class="text text-danger" asp-validation-for="District"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PackageCapasity"></label>
+                    <input asp-for="PackageCapasity" class="form-control" placeholder=" Bağlama limitini daxil edin...">
+                    <span class="text text-danger" asp-validation-for="PackageCapasity"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CountryId">Ölkə</label>
+                    <select asp-for="CountryId" class="form-control">
+                        <option>
+                            Ölkəni Seç
+                        </option>
+                        @foreach (var country in ViewBag.countries)
+                        {
+                            <option value="@country.Id">@country.Name</option>
+                        }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="CountryId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

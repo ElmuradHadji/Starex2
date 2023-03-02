@@ -1,0 +1,24 @@
+﻿@model PhoneNumberPrefixUpdateDto
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Prefix</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="phoneNumberPrefixPostDto.Value">Cins</label>
+                    <input asp-for="phoneNumberPrefixPostDto.Value" value="@Model.phoneNumberPrefixGetDto.Value" class="form-control" placeholder=" Cins adını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="phoneNumberPrefixPostDto.Value"></span>
+                </div>
+                <input type="hidden" asp-for="@Model.phoneNumberPrefixGetDto.Id" value="@Model.phoneNumberPrefixGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

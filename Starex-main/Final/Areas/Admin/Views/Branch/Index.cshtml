@@ -1,0 +1,74 @@
+﻿@model List<BranchGetDto>
+@{
+    ViewData["Title"] = "Yerli Filiallar";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yerli Filiallar</h4>
+            <p class="card-description">
+                <a type="submit" class="btn btn-success" asp-action="Create"><i class="mdi mdi-plus"></i></a>
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Ölkə</th>
+                                <th>Şəhər</th>
+                                <th>Filial</th>
+                                <th>Bağlama Limiti</th>
+                                <th>Sazlamalar</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+
+                                    @foreach (var country in ViewBag.countries)
+                                    {
+                                        if (item.CountryId == country.Id)
+                                        {
+                                            <td>@country.Name</td>
+                                        }
+                                    }
+
+                                    <td>@item.City</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.PackageCapasity</td>
+
+
+                                    <td>
+                                        @if (item.IsActive == true)
+                                        {
+                                            <a class=" btn btn-warning" asp-action="ModifyActivationStatus" asp-route-id="@item.Id"><i class="mdi mdi-lock"></i></a>
+                                        }
+                                        @if (item.IsActive == false)
+                                        {
+                                            <a class=" btn btn-success" asp-action="ModifyActivationStatus" asp-route-id="@item.Id"><i class="mdi mdi-lock-open"></i></a>
+                                        }
+                                        <a class=" btn btn-light" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a>
+                                        <a class=" btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete-variant"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

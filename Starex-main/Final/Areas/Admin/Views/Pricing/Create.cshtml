@@ -1,0 +1,61 @@
+﻿@model PricingPostDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Xarici anbar</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="MinKG"></label>
+                    <input asp-for="MinKG" class="form-control" placeholder=" min Çəkini daxil edin...">
+                    <span class="text text-danger" asp-validation-for="MinKG"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaxKG"></label>
+                    <input asp-for="MaxKG" class="form-control" placeholder=" max Çəkini daxil edin...">
+                    <span class="text text-danger" asp-validation-for=" MaxKG"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" placeholder=" Qiyməti daxil edin...">
+                    <span class="text text-danger" asp-validation-for="Price"></span>
+                </div>
+           
+                <div class="form-group">
+                    <label asp-for="CountryId">Ölkə</label>
+                    <select asp-for="CountryId" class="form-control">
+                        <option>
+                            Ölkəni Seç
+                        </option>
+                        @foreach (var country in ViewBag.countries)
+                        {
+                            <option value="@country.Id">@country.Name</option>
+                        }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="CountryId"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CurrencyId">Valyuta</label>
+                    <select asp-for="CurrencyId" class="form-control">
+                        <option>
+                            Valyutanı Seç
+                        </option>
+                        @foreach (var currency in ViewBag.currencies)
+                        {
+                            <option value="@currency.Id"><i class="@currency.Icon"></i>  @currency.Name</option>
+                        }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="CurrencyId"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

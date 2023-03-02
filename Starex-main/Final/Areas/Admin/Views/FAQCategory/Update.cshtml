@@ -1,0 +1,27 @@
+﻿@model FAQCategoryUpdateDto
+@{
+    ViewData["Name"] = "Update";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-Name">Default form</h4>
+            <p class="card-description"> Basic form layout </p>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="@Model.FAQCategoryPostDto.Name"></label>
+                    <input asp-for="@Model.FAQCategoryPostDto.Name" value="@Model.FAQCategoryGetDto.Name" class="form-control" placeholder="Başlıq mətni...">
+                    <span class="text text-danger" asp-validation-for="FAQCategoryPostDto.Name"></span>
+                </div>
+
+                <input hidden asp-for="@Model.FAQCategoryGetDto.Id" value="@Model.FAQCategoryGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>
+

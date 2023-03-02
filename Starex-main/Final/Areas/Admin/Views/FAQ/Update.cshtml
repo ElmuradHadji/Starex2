@@ -1,0 +1,52 @@
+﻿@model FAQUpdateDto
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">FAQ</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="FAQPostDto.Question">Sual</label>
+                    <input asp-for="FAQPostDto.Question" value="@Model.FAQGetDto.Question" class="form-control" placeholder=" Sualı daxil edin...">
+                    <span class="text text-danger" asp-validation-for="FAQPostDto.Question"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FAQPostDto.Answer">Cavab</label>
+                    <input asp-for="FAQPostDto.Answer" value="@Model.FAQGetDto.Answer" class="form-control" placeholder=" Cavabı daxil edin...">
+                    <span class="text text-danger" asp-validation-for="FAQPostDto.Answer"></span>
+                    <span class="text text-danger" asp-validation-for="FAQPostDto.Answer"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FAQPostDto.CategoryId">Kategoriya</label><br>
+                    <select asp-for="FAQPostDto.CategoryId" class="form-select">
+                        <option>
+                            Kategoriya daxil edin
+                        </option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            if (category.Id == Model.FAQGetDto.CategoryId)
+                            {
+                                <option selected value="@category.Id">@category.Name</option>
+
+                            }
+                            if (category.Id != Model.FAQGetDto.CategoryId)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+            <input hidden asp-for="@Model.FAQGetDto.Id" value="@Model.FAQGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+﻿@model List<OrderForMeGetDto>
+@{
+    ViewData["Title"] = "Sifarişlər";
+    int count = 1;
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Sifarişlər</h4>
+            <p class="card-description">
+                <a type="submit" class="btn btn-success" asp-action="Create"><i class="mdi mdi-plus"></i></a>
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Ad</th>
+                                <th>Tracking</th>
+                                <th>Qiymət</th>
+                                <th>Daşınma</th>
+                                <th>Çəki</th>
+                                <th>Status</th>
+                                <th>Sazlamalar</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.ProductPrice</td>
+                                    <td>@item.InternalCargoPrice</td>
+                                @*    <td>@item.</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Weight</td>
+*@
+
+                                    @foreach (var status in ViewBag.statuses)
+                                    {
+                                        if (item.OrderStatusId == status.Id)
+                                        {
+
+                                            <td><label class="badge badge-success">@status.Name</label></td>
+                                        }
+                                    }
+                                    
+
+
+                                    <td>
+                                       
+                                        <a class=" btn btn-light" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a>
+                                        <a class=" btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="mdi mdi-delete-variant"></i></a>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

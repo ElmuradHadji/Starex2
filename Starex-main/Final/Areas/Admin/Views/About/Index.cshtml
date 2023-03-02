@@ -1,0 +1,56 @@
+﻿@model List<AboutGetDto>
+@{
+    ViewData["Title"] = "Haqqımızda";
+}
+
+<div class="grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Haqqımızda</h4>
+            <p class="card-description">
+            </p>
+            <div class="table-responsive">
+                @if (Model.Count is 0)
+                {
+                    <partial>Məlumat tapılmadı!</partial>
+                }
+                else
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Img</th>
+                                <th>Text</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><img alt="about" src="~/assets/images/@item.Image" /></td>
+                                    <td>
+                                        @if (item.Text.Length <= 50)
+                                        {
+                                            @item.Text
+                                        }
+                                        @if (item.Text.Length >50)
+                                        {
+                                            @item.Text.Substring(0,50)
+
+                                        }
+
+                                    </td>
+                                    <td><a class=" btn btn-primary" asp-action="Update" asp-route-id="@item.Id"><i class="mdi mdi-pencil"></i></a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

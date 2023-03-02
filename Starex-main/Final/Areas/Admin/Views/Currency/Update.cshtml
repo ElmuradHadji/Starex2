@@ -1,0 +1,36 @@
+﻿@model CurrencyUpdateDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Valyuta</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="currencyPostDto.Name">Tam Ad</label>
+                    <input asp-for="currencyPostDto.Name" value="@Model.currencyGetDto.Name" class="form-control" placeholder=" Valyuta adını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="currencyPostDto.Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="currencyPostDto.Icon">Icon</label>
+                    <input asp-for="currencyPostDto.Icon" value="@Model.currencyGetDto.Icon" class="form-control" placeholder=" Iconu daxil edin...">
+                    <span class="text text-danger" asp-validation-for="currencyPostDto.Icon"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="currencyPostDto.ShortName">Qısa Ad</label>
+                    <input asp-for="currencyPostDto.ShortName" value="@Model.currencyGetDto.ShortName" class="form-control" placeholder=" Valyuta qısa adını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="currencyPostDto.ShortName"></span>
+                </div>
+                <input hidden asp-for="@Model.currencyGetDto.Id" value="@Model.currencyGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model CountryUpdateDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ölkə</h4>
+            <div class="alert alert-dismissible alert-danger" asp-validation-summary="ModelOnly">
+            </div>
+            <form method="post" enctype="multipart/form-data" class="forms-sample">
+                <div class="form-group">
+                    <label asp-for="countryPostDto.Name">Ad</label>
+                    <input asp-for="countryPostDto.Name" value="@Model.countryGetDto.Name" class="form-control" placeholder=" Valyuta adını daxil edin...">
+                    <span class="text text-danger" asp-validation-for="countryPostDto.Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="countryPostDto.formFile">Bayraq</label>
+                    <input asp-for="countryPostDto.formFile" class="form-control">
+                    <span class="text text-danger" asp-validation-for="countryPostDto.formFile"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="countryPostDto.CurrencyId">Valyuta</label>
+                    <select asp-for="countryPostDto.CurrencyId" class="form-select">
+                        <option>
+                            Valyuta daxil edin
+                        </option>
+                        @foreach (var currency in ViewBag.Currencies)
+                        {
+                            if (currency.Id == Model.countryGetDto.CurrencyId)
+                            {
+                                <option selected value="@currency.Id">@currency.Name</option>
+
+                            }
+                            if (currency.Id != Model.countryGetDto.CurrencyId)
+                            {
+                                <option value="@currency.Id">@currency.Name</option>
+                            }
+                        }
+                    </select>
+                    <span class="text text-danger" asp-validation-for="countryPostDto.CurrencyId"></span>
+                </div>
+                <input hidden asp-for="@Model.countryGetDto.Id" value="@Model.countryGetDto.Id" />
+                <button type="submit" class="btn btn-success mr-2">Yadda saxla</button>
+                <button class="btn btn-dark" asp-action="Index">Geri</button>
+            </form>
+            <div style="width:100px;height:100px" class="mt-2">
+                <img style="width:100px;height:100px" src="~/assets/images/@Model.countryGetDto.Flag" />
+            </div>
+        </div>
+    </div>
+</div>
+
